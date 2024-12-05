@@ -5,7 +5,7 @@ interface AuthenticatedRequest extends Request{
     userId?: string
 }
 
-export const userMiddleware = (req: AuthenticatedRequest, res: Response, next: NextFunction)=>{
+export const userAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction)=>{
     const token = req.headers.authorization as string;
 
     if(!token){

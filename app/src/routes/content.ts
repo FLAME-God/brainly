@@ -1,11 +1,12 @@
 import express, { Router } from "express"
 import contentController from "../controller/content";
-import { userMiddleware } from "../middleware/usermiddleware";
+import { userAuth } from "../middleware/userMiddleware";
 
 const router: Router = express.Router();
 
-router.post("/content", userMiddleware, contentController.createContentCtlr);
-router.get("/content", userMiddleware, contentController.getContent);
+router.post("/content", userAuth, contentController.createContentCtlr);
+router.get("/content", userAuth, contentController.getContent);
+router.delete("./content", userAuth, contentController.deleteContent);
 
 export default router;
 
