@@ -1,5 +1,6 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import dotenv from "dotenv";
+import { any } from "zod";
 dotenv.config();
 
 interface CustomJwtPayload extends JwtPayload {
@@ -9,13 +10,20 @@ interface CustomJwtPayload extends JwtPayload {
 const jwt_secret_key: string = process.env.JWT_PASSWORD || "defaultSecretKey";
 
 export function createToken(payload: CustomJwtPayload) {
-    return jwt.sign(payload, jwt_secret_key, { expiresIn: "1h" }); 
+    return `Bearer ${jwt.sign(payload, jwt_secret_key, {expiresIn: "1d"})}`;
+}
+
+class TokenError extends Error {
+    constructor(message: string) {
+        super(message);
+        this.name = "TokenError";
+    }
 }
 
 export function verifyToken(token: string): CustomJwtPayload {
     try {
         return jwt.verify(token, jwt_secret_key) as CustomJwtPayload;
     } catch (error) {
-        throw new Error("Invalid or expired token");
+        throw new TokenError("Invalid or expired token");
     }
 }

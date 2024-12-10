@@ -2,17 +2,17 @@ import { Request, Response, NextFunction } from "express"
 import dbOperation from "../service/content";
 
 
-//Creating content
+
 interface AuthenticatedRequest extends Request{
     userId?: string
 }
 
-
+//Creating content
 const createContentCtlr = async (req: AuthenticatedRequest, res:Response, next: NextFunction)=>{
-    const {WebLink, type, title} = req.body;
+    const {webLink, type, title} = req.body;
     try {
         const payload ={
-            WebLink: WebLink,
+            webLink: webLink,
             type: type,
             title: title,
             tag: [],
@@ -46,6 +46,7 @@ const getContent = async (req: AuthenticatedRequest, res: Response, next: NextFu
         res.status(403).json({
             message: "faild the faitch the contents"
         })
+        next(error);
     }
 }
 

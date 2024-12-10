@@ -1,6 +1,7 @@
 import { ContentModel } from "../model/contentSchema";
 
 
+
  async function createContent (payload: object){
     const content = await ContentModel.create(payload);
     return content;

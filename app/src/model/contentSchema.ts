@@ -24,12 +24,12 @@ const contentSchema = new Schema<IContent>({
         type: String,
         required: true
     },
-    tag: {
-        type: Types.ObjectId,
+    tag: [{
+        type: mongoose.Types.ObjectId,
         ref: "Tag"
-    },
+    }],
     userId: {
-        type: Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: "User"
     }
 })
