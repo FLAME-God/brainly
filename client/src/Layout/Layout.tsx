@@ -6,7 +6,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <div className="w-full h-screen">
         <Sidebar />
       </div>
-      <div className="w-full flex-1 m-0">{children}</div>
+      <div className="w-full flex-1">{children}</div>
     </div>
   );
 }

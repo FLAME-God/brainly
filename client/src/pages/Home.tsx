@@ -12,14 +12,14 @@ function Home() {
   }
 
   return (
-    <div className="bg-gray-300 h-full w-screen px-4">
+    <div className="bg-gray-300 h-full w-screen px-4 pr-60">
       <CreateComponentModel
         open={modalOpen}
         onClose={() => {
           setModalOpen(false);
         }}
       />
-      <div className="flex justify-end gap-4 mr-10 py-4">
+      <div className="flex justify-end gap-4 mr-4 py-4">
         <Button
           variant="secondery"
           size="md"
