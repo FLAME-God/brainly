@@ -9,7 +9,7 @@ interface CardProps {
 
 export function Card({ title, link, type }: CardProps) {
   return (
-    <div className="bg-white rounded-md shadow-sm border border-slate-100 p-8 max-w-96 text-lg min-h-40 min-w-72">
+    <div className="bg-white rounded-md shadow-sm border border-slate-100 p-8 max-w-96 text-lg min-h-40 min-w-72 max-h-96">
       <div className="flex justify-between">
         <div className="text-gray-700 pr-2 flex justify-between">
           <div className="text-gray-700 pr-2">
@@ -27,7 +27,7 @@ export function Card({ title, link, type }: CardProps) {
         </div>
       </div>
       <div>
-        <div className="pt-4">
+        <div className="pt-4 content-center">
           {type === "video" && (
             <iframe
               className="w-full h-full"
