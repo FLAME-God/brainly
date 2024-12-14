@@ -8,7 +8,7 @@ import { ContentModel } from "../model/contentSchema";
 }
 
  async function findContent (payload: object){
-    const content = await ContentModel.findOne(payload).populate("userId", "username");
+    const content = await ContentModel.find(payload).populate("userId", "username");
     return content;
 }
 

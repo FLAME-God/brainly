@@ -25,20 +25,28 @@ export function CreateComponentModel({ open, onClose }: ComponentProps) {
   function onClick() {
     const title = titleRef.current?.value;
     const webLink = linkRef.current?.value;
-    axios.post(`${BACKEND_URL}/brain/content`, {
-      webLink,
-      type,
-      title,
-    });
+    axios.post(
+      `${BACKEND_URL}/brain/content`,
+      {
+        webLink,
+        type,
+        title,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    );
   }
   return (
     <div>
       {open && (
         <div>
           <div className="w-screen h-screen bg-slate-500 opacity-60 fixed top-0 left-0 flex justify-center "></div>
-          <div className="flex bg-white opacity-100 fixed top-0 left-0 justify-center">
-            <div className="flex flex-col justify-center">
-              <span className=" p-4 rounded-md  top-0">
+          <div className="w-screen h-screen fixed top-0 left-0 flex justify-center">
+            <div className="flex flex-col justify-center items-center">
+              <span className="bg-white p-4 rounded-md fixed">
                 <div
                   className="flex justify-end cursor-pointer"
                   onClick={onClose}
@@ -48,7 +56,7 @@ export function CreateComponentModel({ open, onClose }: ComponentProps) {
                 <Input referance={titleRef} placeholder="Enter title" />
                 <Input referance={linkRef} placeholder="Enter link" />
 
-                <div>
+                <div className="pt-3">
                   <label htmlFor="type">Types</label>
                   <select
                     name="type"
@@ -61,12 +69,14 @@ export function CreateComponentModel({ open, onClose }: ComponentProps) {
                     })}
                   </select>
                 </div>
-                <Button
-                  variant="primary"
-                  size="lg"
-                  text="Submit"
-                  onClick={onClick}
-                />
+                <div className="flex justify-center pt-4">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    text="Submit"
+                    onClick={onClick}
+                  />
+                </div>
               </span>
             </div>
           </div>

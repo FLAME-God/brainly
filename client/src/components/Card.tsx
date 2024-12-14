@@ -4,12 +4,12 @@ import { ShareIcon } from "../icon/ShareIcon";
 interface CardProps {
   title: string;
   link: string;
-  type: "tweet" | "video";
+  type: "artical" | "video" | "image" | "audio";
 }
 
 export function Card({ title, link, type }: CardProps) {
   return (
-    <div className="bg-white rounded-md shadow-sm border border-slate-100 p-8 max-w-96 text-lg min-h-40 min-w-72 max-h-96">
+    <div className="bg-white rounded-md shadow-sm border border-slate-100 p-8 max-w-72 text-lg min-h-40 min-w-64 max-h-72 overflow-y-auto">
       <div className="flex justify-between">
         <div className="text-gray-700 pr-2 flex justify-between">
           <div className="text-gray-700 pr-2">
@@ -28,12 +28,10 @@ export function Card({ title, link, type }: CardProps) {
       </div>
       <div>
         <div className="pt-4 content-center">
-          {type === "video" && (
+          {type === "audio" && (
             <iframe
-              className="w-full h-full"
-              width="560"
-              height="315"
-              src={link.replace("watch", "emaded").replace("?v=", "/")}
+              className="w-full"
+              src={link.replace("watch", "embed").replace("?v=", "/")}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -41,7 +39,23 @@ export function Card({ title, link, type }: CardProps) {
               allowFullScreen
             ></iframe>
           )}
-          {type === "tweet" && (
+          {type === "image" && (
+            <blockquote className="twitter-tweet w-full h-full">
+              <a href={link.replace("x.com", "twitter.com")}></a>
+            </blockquote>
+          )}
+          {type === "video" && (
+            <iframe
+              className="w-full"
+              src={link.replace("watch", "embed").replace("?v=", "/")}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          )}
+          {type === "artical" && (
             <blockquote className="twitter-tweet w-full h-full">
               <a href={link.replace("x.com", "twitter.com")}></a>
             </blockquote>

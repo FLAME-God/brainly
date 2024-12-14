@@ -1,6 +1,6 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import dotenv from "dotenv";
-import { any } from "zod";
+
 dotenv.config();
 
 interface CustomJwtPayload extends JwtPayload {

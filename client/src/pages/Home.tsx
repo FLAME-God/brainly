@@ -4,9 +4,13 @@ import { Card } from "../components/Card";
 import { CreateComponentModel } from "../components/CreateComponent";
 import { PlusIcon } from "../icon/PlusIcon";
 import { ShareIcon } from "../icon/ShareIcon";
+import { useContent } from "../hooks/useContent";
 
 function Home() {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const contents = useContent();
+
   function onClick() {
     console.log("bdsg.,asxhuasygx");
   }
@@ -37,17 +41,14 @@ function Home() {
           }}
         />
       </div>
-      <div className="flex gap-4">
-        <Card
-          title="Project Ideas"
-          link="https://www.youtube.com/embed/cXtiz4yCKFM?si=ml6Xs-Bc7XxAbRRV"
-          type="video"
-        />
-        <Card
-          title="Ths is a tweet"
-          link="https://x.com/altiamkabir/status/1866758023789809800"
-          type="tweet"
-        />
+      <div className="flex gap-4 flex-wrap">
+        {Array.isArray(contents) && contents.length > 0 ? (
+          contents.map(({ webLink, type, title }, index) => (
+            <Card key={index} type={type} link={webLink} title={title} />
+          ))
+        ) : (
+          <p>No content available</p>
+        )}
       </div>
     </div>
   );
